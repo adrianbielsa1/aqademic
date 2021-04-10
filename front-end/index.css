@@ -1,0 +1,59 @@
+#searchZone {
+    position: absolute;
+
+    top: 25%;
+    left: 50%;
+
+    width: 50%;
+    height: 1em;
+
+    transform: translate(-50%, -50%);
+
+    /* Give it an extended size. */
+    padding: 1em;
+
+    /* Give it round edges. */
+    border-radius: 2.5em;
+
+    background-color: #353b48;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#searchInput {
+    width: 100%;
+    height: 100%;
+
+    /*  On the left we only discount 0.5em so the characters are close to the
+        border, while on the right, since the `searchIcon` has a width of 1em,
+        we discount that width plus the original 0.5em.
+    */
+    padding-left: 0.5em;
+    padding-right: 1.5em;
+
+    background: none;
+    border: 0;
+    outline: 0;
+
+    /* How the text will be displayed. */
+    color: white;
+    font-size: 90%;
+}
+
+#searchIcon {
+    width: 1em;
+    height: 100%;
+
+    /* Give it an extended size so the background is more noticeable. */
+    padding: 0.5em;
+
+    /* Give it round edges. */
+    border-radius: 50%;
+
+    background: white;
+
+    /*  The color of the icon itself. */
+    color: #353b48; /* #d64933; */
+}
