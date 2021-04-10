@@ -1,13 +1,20 @@
-#searchZone {
-    position: absolute;
+#pageSection {
+    display: grid;
 
-    top: 25%;
-    left: 50%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 12em auto;
+    grid-template-areas: "search"
+                         "result";
+}
+
+#searchDiv {
+    grid-area: search;
+
+    margin: auto;
 
     width: 50%;
     height: 1em;
 
-    transform: translate(-50%, -50%);
 
     /* Give it an extended size. */
     padding: 1em;
@@ -56,4 +63,10 @@
 
     /*  The color of the icon itself. */
     color: #353b48; /* #d64933; */
+}
+
+#resultDiv {
+    grid-area: result;
+
+    background-color: #b03532;
 }
