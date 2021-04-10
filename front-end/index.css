@@ -15,6 +15,7 @@
     width: 50%;
     height: 1em;
 
+    transition: width 0.4s;
 
     /* Give it an extended size. */
     padding: 1em;
@@ -27,6 +28,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+#searchDiv:hover {
+    width: 65%;
 }
 
 #searchInput {
