@@ -1,0 +1,4 @@
+# Python-related folders, one for packages of the environment itself, and the other
+# for storing files that speed up interpretation.
+environment
+__pycache__
