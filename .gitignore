@@ -2,3 +2,6 @@
 # for storing files that speed up interpretation.
 environment
 __pycache__
+
+# Django-related folders.
+migrations
