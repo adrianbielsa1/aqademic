@@ -1,17 +1,83 @@
+$primary-color: #353b48;
+
 #pageSection {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
     display: grid;
 
     grid-template-columns: 1fr;
-    grid-template-rows: 12em auto;
-    grid-template-areas: "search"
-                         "result";
+    grid-template-rows: 6em 18em 1fr;
+
+    align-items: center;
+    justify-items: center;
+
+    background-color: #150941;
+}
+
+#headerDiv {
+    grid-row: 1;
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 1fr;
+    align-items: center;
+    /*justify-items: center;*/
+
+    background-color: $primary-color;
+
+    font-family: Helvetica, sans-serif;
+}
+
+#pageName {
+    grid-column: 1;
+    grid-row: 1;
+
+    background-color: transparent;
+    color: #F80040;
+    font-size: 2em;
+
+    margin-left: 1em;
+}
+
+#pageAdministrators {
+    grid-column: 3;
+    grid-row: 1;
+
+    background-color: transparent;
+    color: #F80040;
+    font-size: 1.5em;
+    text-align: right;
+
+    margin-right: 1em;
 }
 
 #searchDiv {
-    grid-area: search;
+    grid-row: 2;
 
-    margin: auto;
+    width: 100%;
+    height: 100%;
 
+    background-color: transparent;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    justify-items: center;
+}
+
+#searchBarDiv {
     width: 50%;
     height: 1em;
 
@@ -30,11 +96,7 @@
     justify-content: space-evenly;
 }
 
-#searchDiv:hover {
-    width: 65%;
-}
-
-#searchInput {
+#searchBarInput {
     width: 100%;
     height: 100%;
 
@@ -45,7 +107,7 @@
     padding-left: 0.5em;
     padding-right: 1.5em;
 
-    background: none;
+    background: transparent;
     border: 0;
     outline: 0;
 
@@ -54,7 +116,7 @@
     font-size: 90%;
 }
 
-#searchIcon {
+#searchBarIcon {
     width: 1em;
     height: 100%;
 
@@ -71,7 +133,30 @@
 }
 
 #resultDiv {
-    grid-area: result;
+    /*grid-area: result;*/
+    grid-row: 3;
 
-    background-color: #b03532;
+    width: 100%;
+    height: 100%;
+
+    background-color: $primary-color;
+    color: #F80040;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #headerDiv {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50% 50%;
+    }
+
+    #pageName {
+        grid-column: 1;
+    }
+
+    #pageAdministrators {
+        grid-column: 1;
+        grid-row: 2;
+    }
 }
