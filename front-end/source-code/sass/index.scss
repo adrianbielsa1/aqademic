@@ -1,4 +1,7 @@
-$primary-color: #353b48;
+$dark-orange: #ff6200;
+$light-orange: #fd9346;
+$dark-grey: #353b48;
+$primary-color: $dark-grey;
 
 #pageSection {
     position: absolute;
@@ -13,11 +16,12 @@ $primary-color: #353b48;
 
     grid-template-columns: 1fr;
     grid-template-rows: 6em 18em 1fr;
+    row-gap: 4px;
 
     align-items: center;
     justify-items: center;
 
-    background-color: #150941;
+    background-color: $dark-orange;
 }
 
 #headerDiv {
@@ -30,8 +34,6 @@ $primary-color: #353b48;
 
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 1fr;
-    align-items: center;
-    /*justify-items: center;*/
 
     background-color: $primary-color;
 
@@ -42,23 +44,62 @@ $primary-color: #353b48;
     grid-column: 1;
     grid-row: 1;
 
-    background-color: transparent;
-    color: #F80040;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-weight: bold;
 
+    background-image: linear-gradient(
+        45deg,
+        $light-orange 65%,
+        $dark-orange 35%,
+    );
+
+    /* Fallback values for `background-clip`. */
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -o-background-clip: text;
+    -ms-background-clip: text;
+
+    /* Make the background only affect the text. */
+    background-clip: text;
+
+    /* Fallback values for `text-fill-color`. */
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    -o-text-fill-color: transparent;
+    -ms-text-fill-color: transparent;
+
+    /* Make text transparent. */
+    text-fill-color: transparent;
+
+    margin: auto;
     margin-left: 1em;
+
+    animation: make-background-smaller-animation 0.5s ease-out forwards;
 }
 
-#pageAdministrators {
+#pageName:hover{
+    animation: make-background-larger-animation 0.5s ease-in forwards;
+}
+
+#pageLogin {
     grid-column: 3;
     grid-row: 1;
 
-    background-color: transparent;
-    color: #F80040;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    font-weight: bold;
     text-align: right;
 
+    text-decoration: none;
+
+    background-color: transparent;
+    color: $light-orange;
+
+    margin: auto;
     margin-right: 1em;
+}
+
+#pageLogin:hover {
+    color: white;
 }
 
 #searchDiv {
@@ -67,7 +108,7 @@ $primary-color: #353b48;
     width: 100%;
     height: 100%;
 
-    background-color: transparent;
+    background-color: $light-orange;
 
     display: grid;
     grid-template-columns: 1fr;
@@ -155,8 +196,26 @@ $primary-color: #353b48;
         grid-column: 1;
     }
 
-    #pageAdministrators {
+    #pageLogin {
         grid-column: 1;
         grid-row: 2;
+    }
+}
+
+@keyframes make-background-smaller-animation {
+    0% {
+        background-size: 500%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+@keyframes make-background-larger-animation {
+    0% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 500%;
     }
 }
