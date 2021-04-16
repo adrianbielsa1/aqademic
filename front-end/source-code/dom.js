@@ -1,13 +1,13 @@
 // The "DOM" module is meant to ease interaction with DOM elements.
 
 export const searchInput = {
-    element: document.getElementById("searchInput"),
+    element: document.getElementById("searchBarInput"),
 
     onKeyUp: function(event) {},
 };
 
 export const searchIcon = {
-    element: document.getElementById("searchIcon"),
+    element: document.getElementById("searchBarIcon"),
 
     onClick: function(event) {},
 };
