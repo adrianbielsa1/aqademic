@@ -32,7 +32,7 @@ $primary-color: $dark-grey;
 
     display: grid;
 
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 0.25fr 1fr 0.25fr;
     grid-template-rows: 1fr;
 
     background-color: $primary-color;
@@ -111,7 +111,7 @@ $primary-color: $dark-grey;
     background-color: $light-orange;
 
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
     grid-template-rows: auto 2em 4em auto;
     row-gap: 0.5em;
 
@@ -209,7 +209,7 @@ $primary-color: $dark-grey;
 @media (max-width: 768px) {
     #headerDiv {
         grid-template-columns: 1fr;
-        grid-template-rows: 50% 50%;
+        grid-template-rows: 1fr 1fr;
     }
 
     #pageName {
