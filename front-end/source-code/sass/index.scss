@@ -1,10 +1,16 @@
 $dark-orange: #ff6200;
 $light-orange: #fd9346;
 $dark-grey: #353b48;
+$light-grey: #d3d3d3;
+$bright-white: #ffffff;
 
 $primary-color: $dark-grey;
-$secondary-color: $light-orange;
-$tertiary-color: $dark-orange;
+$secondary-color: $light-orange; // $light-grey;
+$divisor-color: $dark-orange; // $bright-white;
+$highlight-color: $bright-white;
+
+$primary-text-color: $light-orange; // $light-grey;
+$secondary-text-color: $dark-grey;
 
 // Mainly used to center a div's content.
 @mixin flex-single-center {
@@ -62,11 +68,11 @@ $tertiary-color: $dark-orange;
     font-weight: bold;
     font-family: Helvetica;
     font-size: 1em;
-    color: $tertiary-color;
+    color: $primary-text-color;
 }
 
 .divisor {
-    background-color: $tertiary-color;
+    background-color: $divisor-color;
 }
 
 .header {
@@ -96,7 +102,7 @@ $tertiary-color: $dark-orange;
     justify-content: flex-end;
     font-size: 2rem;
 
-    color: $secondary-color;
+    color: $primary-text-color;
 
     // Disable links' decoration.
     text-decoration: none;
@@ -109,7 +115,7 @@ $tertiary-color: $dark-orange;
 }
 
 .header > .navigation > .login:hover {
-    color: white;
+    color: $highlight-color;
 }
 
 .search {
@@ -133,7 +139,7 @@ $tertiary-color: $dark-orange;
     @include grid-child(1, 2);
 
     font-size: 1.25rem;
-    color: $primary-color;
+    color: $secondary-text-color;
 
     // Disable automatic line breaks when the page gets too small.
     white-space: nowrap;
@@ -150,7 +156,7 @@ $tertiary-color: $dark-orange;
 .search > .query > .bar > .input {
     @include grid-child(1, 2);
 
-    color: white;
+    color: $primary-text-color;
 
     // Disable input's border, outline, and default background.
     background-color: transparent;
@@ -163,8 +169,8 @@ $tertiary-color: $dark-orange;
     @include flex-single-center;
     @include grid-child(1, 4);
 
-    background-color: white;
-    color: $primary-color;
+    background-color: $highlight-color;
+    color: $secondary-text-color;
 
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
@@ -182,7 +188,7 @@ $tertiary-color: $dark-orange;
     @include grid-child(1, 2);
 
     font-size: 1.25rem;
-    color: $primary-color;
+    color: $secondary-text-color;
 
     // Disable automatic line breaks when the page gets too small.
     // NOTE: This will break the layout once this behavior kicks in, which
