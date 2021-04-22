@@ -1,52 +1,45 @@
 <!doctype html>
 
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Aqademic</title>
-
     </head>
 
     <body>
-
-        <link rel="stylesheet" href="source-code/css/index.css">
+        <!-- Provides us with awesome icons to use across the page. -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="source-code/css/index.css">
 
-        <section id="pageSection">
-
-            <div id="headerDiv">
-
-                <p id="pageName">Aqademic</p>
-                <a id="pageLogin" href="login.html">Log in</a>
-
-            </div>
-
-            <div id="searchDiv">
-
-                <p id="searchTipParagraph">Who are you looking for?</p>
-
-                <div id="searchBarDiv">
-
-                    <input id="searchBarInput" name="keywords" type="text" spellcheck="false" placeholder="Type a student's name or ID number">
-                    <span id="searchBarIcon" class="fas fa-search"></span>
-
+        <div class="page">
+            <div class="header">
+                <div class="title">Aqademic</div>
+                <div class="navigation">
+                    <a class="login" href="login.html">Log in</a>
                 </div>
-
             </div>
-
-            <div id="resultDiv">
-
-                Results.
-
+            <div class="search">
+                <div class="query">
+                    <div class="tip">Who are you looking for?</div>
+                    <div class="bar">
+                        <input class="input" placeholder="Hint: Type a student's name or ID number..."></input>
+                        <div class="button fas fa-search"></div>
+                    </div>
+                </div>
+                <div class="result">
+                    <div class="tip">Results</div>
+                    <div class="list"></div>
+                </div>
             </div>
+            <div class="footer"></div>
 
-        </section>
+            <!-- These divs are automatically placed in the page's grid's empty cells. -->
+            <!-- TODO: Is this a bad practice? -->
+            <div class="divisor"></div>
+            <div class="divisor"></div>
+        </div>
 
         <script type="module" src="source-code/javascript/index.js" async></script>
-
     </body>
-
 </html>

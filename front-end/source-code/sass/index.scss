@@ -1,241 +1,204 @@
 $dark-orange: #ff6200;
 $light-orange: #fd9346;
 $dark-grey: #353b48;
+
 $primary-color: $dark-grey;
+$secondary-color: $light-orange;
+$tertiary-color: $dark-orange;
 
-#pageSection {
-    position: absolute;
+// Mainly used to center a div's content.
+@mixin flex-single-center {
+    display: flex;
 
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: 6em 18em 1fr;
-    row-gap: 4px;
-
+    // Horizontal and vertical alignment, respectively.
+    justify-content: center;
     align-items: center;
-    justify-items: center;
-
-    background-color: $dark-orange;
 }
 
-#headerDiv {
-    grid-row: 1;
+// Same as `flex-single-center`, but also wraps the contents in the specified
+// direction.
+@mixin flex-wrap-center($direction: row) {
+    @include flex-single-center;
 
-    width: 100%;
-    height: 100%;
+    // Behavior when there are too many items.
+    flex-flow: $direction wrap;
+    align-content: center;
+}
 
+// Creates a grid.
+@mixin grid-parent($rows, $columns) {
     display: grid;
+    grid-template-rows: $rows;
+    grid-template-columns: $columns;
+}
 
-    grid-template-columns: 0.25fr 1fr 0.25fr;
-    grid-template-rows: 1fr;
+// Selects a cell of the parent's grid.
+@mixin grid-child($row, $column) {
+    grid-row: $row;
+    grid-column: $column;
+}
+
+// Automatically sets the given `properties` to `inherit`. You can use it
+// in a container's element to inherit some of the container's properties.
+@mixin inheritance($properties) {
+    @each $property in $properties {
+        #{$property}: inherit;
+    }
+}
+
+.page {
+    @include grid-parent(8rem 4px 1fr 4px 6rem, 100%);
+
+    // Ignore the default margins.
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    // Resize to fit the whole viewport.
+    width: 100vw;
+    height: 100vh;
+
+    // Default font style for the whole page.
+    font-weight: bold;
+    font-family: Helvetica;
+    font-size: 1em;
+    color: $tertiary-color;
+}
+
+.divisor {
+    background-color: $tertiary-color;
+}
+
+.header {
+    @include grid-child(1, 1);
+    @include grid-parent(100%, 70% 30%);
 
     background-color: $primary-color;
-
-    font-family: Helvetica, sans-serif;
 }
 
-#pageName {
-    grid-column: 1;
-    grid-row: 1;
+.header > .title {
+    @include flex-single-center;
+    @include grid-child(1, 1);
 
-    font-size: 2.5em;
-    font-weight: bold;
+    // Overrides.
+    justify-content: flex-start;
+    font-size: 4rem;
 
-    background-image: linear-gradient(
-        45deg,
-        $light-orange 65%,
-        $dark-orange 35%,
-    );
-
-    /* Fallback values for `background-clip`. */
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -o-background-clip: text;
-    -ms-background-clip: text;
-
-    /* Make the background only affect the text. */
-    background-clip: text;
-
-    /* Fallback values for `text-fill-color`. */
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-    -o-text-fill-color: transparent;
-    -ms-text-fill-color: transparent;
-
-    /* Make text transparent. */
-    text-fill-color: transparent;
-
-    margin: auto;
-    margin-left: 1em;
-
-    animation: make-background-smaller-animation 0.5s ease-out forwards;
+    margin-left: 3rem;
 }
 
-#pageName:hover{
-    animation: make-background-larger-animation 0.5s ease-in forwards;
-}
+// TODO: The layout breaks if more items are added to the navigation bar.
+.header > .navigation {
+    @include flex-single-center;
+    @include grid-child(1, 2);
 
-#pageLogin {
-    grid-column: 3;
-    grid-row: 1;
+    // Overrides.
+    justify-content: flex-end;
+    font-size: 2rem;
 
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: right;
+    color: $secondary-color;
 
+    // Disable links' decoration.
     text-decoration: none;
 
-    background-color: transparent;
-    color: $light-orange;
-
-    margin: auto;
-    margin-right: 1em;
+    margin-right: 3rem;
 }
 
-#pageLogin:hover {
+.header > .navigation > .login {
+    @include inheritance(font-size color text-decoration);
+}
+
+.header > .navigation > .login:hover {
     color: white;
 }
 
-#searchDiv {
-    grid-row: 2;
+.search {
+    // TODO: Why do I need the first "margin" to be half the last one for them
+    // to be of the same visual size?
+    @include grid-parent(1rem 5rem 1fr 2rem, 5rem 1fr 5rem);
+    @include grid-child(3, 1);
 
-    width: 100%;
-    height: 100%;
-
-    background-color: $light-orange;
-
-    display: grid;
-    grid-template-columns: 0.2fr 1fr 0.2fr;
-    grid-template-rows: auto 2em 4em auto;
-    row-gap: 0.5em;
-
-    justify-items: center;
+    background-color: $secondary-color;
 }
 
-#searchTipParagraph {
-    grid-column: 2;
-    grid-row: 2;
+.search > .query {
+    @include grid-parent(3rem 2rem, 20% 1fr 20%);
+    @include grid-child(2, 2);
 
-    font-family: Helvetica, sans-serif;
-    font-size: 1.3em;
-    font-weight: bold;
-    text-align: center;
-
-    color: $dark-grey; //white;
-
-    margin: auto;
+    background-color: $secondary-color;
 }
 
-#searchBarDiv {
-    grid-column: 2;
-    grid-row: 3;
+.search > .query > .tip {
+    @include flex-single-center;
+    @include grid-child(1, 2);
 
-    width: 100%;
-    height: 1em;
+    font-size: 1.25rem;
+    color: $primary-color;
 
-    transition: width 0.4s;
-
-    /* Give it an extended size. */
-    padding: 1em;
-
-    /* Give it round edges. */
-    border-radius: 2.5em;
-
-    background-color: #353b48;
-
-    margin: auto;
-    margin-top: 0.1em;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    // Disable automatic line breaks when the page gets too small.
+    white-space: nowrap;
 }
 
-#searchBarInput {
-    width: 100%;
-    height: 100%;
-
-    /*  On the left we only discount 0.5em so the characters are close to the
-        border, while on the right, since the `searchIcon` has a width of 1em,
-        we discount that width plus the original 0.5em.
-    */
-    padding-left: 0.5em;
-    padding-right: 1.5em;
-
-    background: transparent;
-    border: 0;
-    outline: 0;
-
-    /* How the text will be displayed. */
-    color: white;
-    font-size: 90%;
-}
-
-#searchBarIcon {
-    width: 1em;
-    height: 100%;
-
-    /* Give it an extended size so the background is more noticeable. */
-    padding: 0.5em;
-
-    /* Give it round edges. */
-    border-radius: 50%;
-
-    background: white;
-
-    /*  The color of the icon itself. */
-    color: #353b48; /* #d64933; */
-}
-
-#resultDiv {
-    /*grid-area: result;*/
-    grid-row: 3;
-
-    width: 100%;
-    height: 100%;
+.search > .query > .bar {
+    @include grid-parent(100%, 0.5rem 1fr 0.5rem 2rem);
+    @include grid-child(2, 2);
 
     background-color: $primary-color;
-    color: #F80040;
-    font-size: 1.5em;
-    text-align: center;
+    border-radius: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    #headerDiv {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
+.search > .query > .bar > .input {
+    @include grid-child(1, 2);
 
-    #pageName {
-        grid-column: 1;
-    }
+    color: white;
 
-    #pageLogin {
-        grid-column: 1;
-        grid-row: 2;
-    }
+    // Disable input's border, outline, and default background.
+    background-color: transparent;
+    border-color: transparent;
+    outline-color: transparent;
+    outline: 0;
 }
 
-@keyframes make-background-smaller-animation {
-    0% {
-        background-size: 500%;
-    }
-    100% {
-        background-size: 100%;
-    }
+.search > .query > .bar > .button {
+    @include flex-single-center;
+    @include grid-child(1, 4);
+
+    background-color: white;
+    color: $primary-color;
+
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
-@keyframes make-background-larger-animation {
-    0% {
-        background-size: 100%;
-    }
-    100% {
-        background-size: 500%;
-    }
+.search > .result {
+    @include grid-parent(3rem 1fr, 8% 1fr 8%);
+    @include grid-child(3, 2);
+
+    background-color: $secondary-color;
+}
+
+.search > .result > .tip {
+    @include flex-single-center;
+    @include grid-child(1, 2);
+
+    font-size: 1.25rem;
+    color: $primary-color;
+
+    // Disable automatic line breaks when the page gets too small.
+    // NOTE: This will break the layout once this behavior kicks in, which
+    // should be resolved using media queries.
+    white-space: nowrap;
+}
+
+.search > .result > .list {
+    @include grid-child(2, 2);
+
+    background-color: $primary-color;
+    border-radius: 0.5rem;
+}
+
+.footer {
+    @include grid-child(5, 1);
+
+    background-color: $primary-color;
 }
