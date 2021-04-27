@@ -204,7 +204,11 @@ $secondary-text-color: $dark-grey;
 }
 
 .footer {
+    @include flex-single-center;
     @include grid-child(5, 1);
+
+    // Overrides.
+    justify-content: space-around;
 
     background-color: $primary-color;
 }
