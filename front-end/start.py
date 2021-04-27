@@ -21,7 +21,7 @@ async def run(command):
 # Runs the front-end related commands.
 async def run_front_end_commands():
     await asyncio.gather(
-            run("cd source-code && live-server --entry-file=html/index.html"),
+            run("live-server --entry-file=source-code/html/index.html"),
             run("cd source-code && sass --watch sass:css")
     )
 
