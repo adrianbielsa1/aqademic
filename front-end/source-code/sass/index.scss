@@ -212,3 +212,24 @@ $secondary-text-color: $dark-grey;
 
     background-color: $primary-color;
 }
+
+// For small, portrait-like resolutions.
+@media screen and (max-width: 600px) {
+    .header {
+        @include grid-parent(60% 40%, 100%);
+    }
+
+    .header > .title {
+        @include flex-single-center;
+        @include grid-child(1, 1);
+
+        margin-left: 0rem;
+    }
+
+    .header > .navigation {
+        @include flex-single-center;
+        @include grid-child(2, 1);
+
+        margin-right: 0rem;
+    }
+}
