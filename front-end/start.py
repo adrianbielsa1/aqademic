@@ -10,13 +10,13 @@ async def run(command):
 
     output, errors = await process.communicate()
 
-    print(f'[{command!r} exited with {process.returncode}]')
+    print(f"[{command!r} exited with {process.returncode}]")
 
     if output:
-        print(f'[output]\n{output.decode()}')
+        print(f"[output]\n{output.decode()}")
 
     if errors:
-        print(f'[errors]\n{errors.decode()}')
+        print(f"[errors]\n{errors.decode()}")
 
 # Runs the front-end related commands.
 async def run_front_end_commands():
