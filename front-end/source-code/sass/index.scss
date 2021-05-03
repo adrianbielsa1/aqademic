@@ -177,7 +177,7 @@ $secondary-text-color: $dark-grey;
 }
 
 .search > .result {
-    @include grid-parent(3rem 1fr, 0.1fr 1fr 0.1fr);
+    @include grid-parent(3rem 1fr, 0.05fr 1fr 0.05fr);
     @include grid-child(3, 1);
 
     background-color: $secondary-color;
@@ -197,10 +197,40 @@ $secondary-text-color: $dark-grey;
 }
 
 .search > .result > .list {
+    // This will create as many rows as necessary.
+    @include grid-parent(auto, repeat(auto-fill, 14rem));
     @include grid-child(2, 2);
 
+    // Element related styles.
+
+    padding: 1.5rem;
+
     background-color: $primary-color;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+
+    // Children related styles.
+
+    // Minimum distance between each cell.
+    grid-gap: 1rem;
+
+    justify-content: space-around;
+    align-content: flex-start;
+}
+
+.search > .result > .list > .item {
+    @include flex-wrap-center;
+
+    font-weight: normal;
+    color: $secondary-text-color;
+
+    border-color: $divisor-color;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 1rem;
+
+    background-color: $secondary-color;
+
+    padding: 0.5rem;
 }
 
 .footer {
