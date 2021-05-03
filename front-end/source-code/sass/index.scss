@@ -1,16 +1,42 @@
-$dark-orange: #ff6200;
-$light-orange: #fd9346;
-$dark-grey: #353b48;
-$light-grey: #d3d3d3;
-$bright-white: #ffffff;
+@use "sass:map";
 
-$primary-color: $dark-grey;
-$secondary-color: $light-orange; // $light-grey;
-$divisor-color: $dark-orange; // $bright-white;
-$highlight-color: $bright-white;
+$colors: (
+    // Common color variants.
+    "grey": grey,
+    "white": white,
 
-$primary-text-color: $light-orange; // $light-grey;
-$secondary-text-color: $dark-grey;
+    // Dark color variants.
+    "dark-grey": #353b48,
+    "dark-orange": #ff6200,
+
+    // Light color variants.
+    "light-grey": #d3d3d3,
+    "light-orange": #fd9346,
+);
+
+$orangey-palette: (
+    "primary": map.get($colors, "dark-grey"),
+    "secondary": map.get($colors, "light-orange"),
+
+    "primary-text": map.get($colors, "light-grey"),
+    "secondary-text": map.get($colors, "dark-grey"),
+
+    "divisor": map.get($colors, "dark-orange"),
+    "highlight": map.get($colors, "white"),
+);
+
+$greyish-palette: (
+    "primary": map.get($colors, "dark-grey"),
+    "secondary": map.get($colors, "light-grey"),
+
+    "primary-text": map.get($colors, "light-grey"),
+    "secondary-text": map.get($colors, "dark-grey"),
+
+    "divisor": map.get($colors, "grey"),
+    "highlight": map.get($colors, "white"),
+);
+
+$current-palette: $orangey-palette;
 
 // Mainly used to center a div's content.
 @mixin flex-single-center {
@@ -68,18 +94,18 @@ $secondary-text-color: $dark-grey;
     font-weight: bold;
     font-family: Helvetica;
     font-size: 1em;
-    color: $primary-text-color;
+    color: map.get($current-palette, "primary-text");
 }
 
 .divisor {
-    background-color: $divisor-color;
+    background-color: map.get($current-palette, "divisor");
 }
 
 .header {
     @include grid-child(1, 1);
     @include grid-parent(100%, 70% 30%);
 
-    background-color: $primary-color;
+    background-color: map.get($current-palette, "primary");
 }
 
 .header > .title {
@@ -102,7 +128,7 @@ $secondary-text-color: $dark-grey;
     justify-content: flex-end;
     font-size: 2rem;
 
-    color: $primary-text-color;
+    color: map.get($current-palette, "primary-text");
 
     // Disable links' decoration.
     text-decoration: none;
@@ -115,7 +141,7 @@ $secondary-text-color: $dark-grey;
 }
 
 .header > .navigation > .login:hover {
-    color: $highlight-color;
+    color: map.get($current-palette, "highlight");
 }
 
 .search {
@@ -124,14 +150,14 @@ $secondary-text-color: $dark-grey;
     @include grid-parent(1rem 5rem 1fr 2rem, 1fr);
     @include grid-child(3, 1);
 
-    background-color: $secondary-color;
+    background-color: map.get($current-palette, "secondary");
 }
 
 .search > .query {
     @include grid-parent(3rem 2rem, 0.3fr 1fr 0.3fr);
     @include grid-child(2, 1);
 
-    background-color: $secondary-color;
+    background-color: map.get($current-palette, "secondary");
 }
 
 .search > .query > .tip {
@@ -139,7 +165,7 @@ $secondary-text-color: $dark-grey;
     @include grid-child(1, 2);
 
     font-size: 1.25rem;
-    color: $secondary-text-color;
+    color: map.get($current-palette, "secondary-text");
 
     // Disable automatic line breaks when the page gets too small.
     white-space: nowrap;
@@ -149,14 +175,14 @@ $secondary-text-color: $dark-grey;
     @include grid-parent(100%, 2rem 0.5rem 1fr 0.5rem);
     @include grid-child(2, 2);
 
-    background-color: $primary-color;
+    background-color: map.get($current-palette, "primary");
     border-radius: 0.5rem;
 }
 
 .search > .query > .bar > .input {
     @include grid-child(1, 3);
 
-    color: $highlight-color;
+    color: map.get($current-palette, "highlight");
 
     // Disable input's border, outline, and default background.
     background-color: transparent;
@@ -169,8 +195,8 @@ $secondary-text-color: $dark-grey;
     @include flex-single-center;
     @include grid-child(1, 1);
 
-    background-color: $highlight-color;
-    color: $secondary-text-color;
+    background-color: map.get($current-palette, "highlight");
+    color: map.get($current-palette, "secondary-text");
 
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
@@ -180,7 +206,7 @@ $secondary-text-color: $dark-grey;
     @include grid-parent(3rem 1fr, 0.05fr 1fr 0.05fr);
     @include grid-child(3, 1);
 
-    background-color: $secondary-color;
+    background-color: map.get($current-palette, "secondary");
 }
 
 .search > .result > .tip {
@@ -188,7 +214,7 @@ $secondary-text-color: $dark-grey;
     @include grid-child(1, 2);
 
     font-size: 1.25rem;
-    color: $secondary-text-color;
+    color: map.get($current-palette, "secondary-text");
 
     // Disable automatic line breaks when the page gets too small.
     // NOTE: This will break the layout once this behavior kicks in, which
@@ -205,7 +231,7 @@ $secondary-text-color: $dark-grey;
 
     padding: 1.5rem;
 
-    background-color: $primary-color;
+    background-color: map.get($current-palette, "primary");
     border-radius: 1rem;
 
     // Children related styles.
@@ -221,14 +247,14 @@ $secondary-text-color: $dark-grey;
     @include flex-wrap-center;
 
     font-weight: normal;
-    color: $secondary-text-color;
+    color: map.get($current-palette, "secondary-text");
 
-    border-color: $divisor-color;
+    border-color: map.get($current-palette, "divisor");
     border-style: solid;
     border-width: thin;
     border-radius: 1rem;
 
-    background-color: $secondary-color;
+    background-color: map.get($current-palette, "secondary");
 
     padding: 0.5rem;
 }
@@ -240,7 +266,7 @@ $secondary-text-color: $dark-grey;
     // Overrides.
     justify-content: space-around;
 
-    background-color: $primary-color;
+    background-color: map.get($current-palette, "primary");
 }
 
 // Targets all `img` DOM elements that are inside the `footer`.
