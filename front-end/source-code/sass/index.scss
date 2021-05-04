@@ -259,6 +259,15 @@ $current-palette: $orangey-palette;
     padding: 0.5rem;
 }
 
+.search > .result > .list > .item:hover {
+    $shadow-color: map.get($current-palette, "divisor");
+
+    -moz-box-shadow: inset 0 0 1rem $shadow-color;
+    -webkit-box-shadow: inset 0 0 1rem $shadow-color;
+
+    box-shadow: inset 0 0 1rem $shadow-color;
+}
+
 .footer {
     @include flex-single-center;
     @include grid-child(5, 1);
