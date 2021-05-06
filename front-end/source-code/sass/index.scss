@@ -150,14 +150,14 @@ $current-palette: $orangey-palette;
     @include grid-parent(1rem 5rem 1fr 2rem, 1fr);
     @include grid-child(3, 1);
 
-    background-color: map.get($current-palette, "secondary");
+    background-image: url("../../media/search-background.svg");
 }
 
 .search > .query {
     @include grid-parent(3rem 2rem, 0.3fr 1fr 0.3fr);
     @include grid-child(2, 1);
 
-    background-color: map.get($current-palette, "secondary");
+    background-color: transparent;
 }
 
 .search > .query > .tip {
@@ -206,7 +206,7 @@ $current-palette: $orangey-palette;
     @include grid-parent(3rem 1fr, 0.05fr 3rem 1fr 3rem 0.05fr);
     @include grid-child(3, 1);
 
-    background-color: map.get($current-palette, "secondary");
+    background-color: transparent;
 }
 
 .search > .result > .tip {
