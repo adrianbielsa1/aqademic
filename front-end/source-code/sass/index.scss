@@ -203,7 +203,7 @@ $current-palette: $orangey-palette;
 }
 
 .search > .result {
-    @include grid-parent(3rem 1fr, 0.05fr 1fr 0.05fr);
+    @include grid-parent(3rem 1fr, 0.05fr 3rem 1fr 3rem 0.05fr);
     @include grid-child(3, 1);
 
     background-color: map.get($current-palette, "secondary");
@@ -211,7 +211,7 @@ $current-palette: $orangey-palette;
 
 .search > .result > .tip {
     @include flex-single-center;
-    @include grid-child(1, 2);
+    @include grid-child(1, 3);
 
     font-size: 1.25rem;
     color: map.get($current-palette, "secondary-text");
@@ -222,17 +222,46 @@ $current-palette: $orangey-palette;
     white-space: nowrap;
 }
 
-.search > .result > .list {
-    // This will create as many rows as necessary.
-    @include grid-parent(auto, repeat(auto-fill, 14rem));
+.search > .result > .previous {
+    @include flex-single-center;
     @include grid-child(2, 2);
+
+    background-color: map.get($current-palette, "highlight");
+    color: map.get($current-palette, "secondary-text");
+
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.search > .result > .next {
+    @include flex-single-center;
+    @include grid-child(2, 4);
+
+    background-color: map.get($current-palette, "highlight");
+    color: map.get($current-palette, "secondary-text");
+
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.search > .result > .previous > .button {
+    transform: scale(3);
+}
+
+.search > .result > .next > .button {
+    transform: scale(3);
+}
+
+.search > .result > .list {
+    // This will create as many rows and columns as necessary.
+    @include grid-parent(repeat(auto-fill, 5rem), repeat(auto-fill, 14rem));
+    @include grid-child(2, 3);
 
     // Element related styles.
 
     padding: 1.5rem;
 
     background-color: map.get($current-palette, "primary");
-    border-radius: 1rem;
 
     // Children related styles.
 
@@ -240,7 +269,7 @@ $current-palette: $orangey-palette;
     grid-gap: 1rem;
 
     justify-content: space-around;
-    align-content: flex-start;
+    align-content: space-around;
 }
 
 .search > .result > .list > .item {
