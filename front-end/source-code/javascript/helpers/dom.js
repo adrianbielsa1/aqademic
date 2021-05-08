@@ -24,6 +24,14 @@ export const getSearchButtonElement = () => {
     return document.querySelector(".page > .search > .query > .bar > .button");
 };
 
+export const getSearchResultsElement = () => {
+    if (document.readyState === "loading") {
+        throw new DOMNotLoadedError("");
+    }
+
+    return document.querySelector(".page > .search > .result > .list");
+};
+
 // Gathers the current input query and dispatches an event containing
 // said information so other objects can potentially transfer the request
 // to the server.
@@ -31,6 +39,10 @@ const dispatchStartRequestEvent = function() {
     const input = getSearchInputElement();
 
     document.dispatchEvent(new CustomEvent("customStartRequest", { detail: input.value }));
+}
+
+export const dispatchUpdateResultsEvent = function(entries) {
+    document.dispatchEvent(new CustomEvent("customUpdateResultsEvent", { detail: entries }));
 }
 
 const mount = function() {
