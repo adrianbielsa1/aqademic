@@ -41,8 +41,14 @@ const dispatchStartRequestEvent = function() {
     document.dispatchEvent(new CustomEvent("customStartRequest", { detail: input.value }));
 }
 
-export const dispatchUpdateResultsEvent = function(entries) {
-    document.dispatchEvent(new CustomEvent("customUpdateResultsEvent", { detail: entries }));
+// Signals that a request for results has been completed and provides the result
+// so other modules can operate with it.
+const dispatchResolvedRequestEvent = function(response) {
+    document.dispatchEvent(new CustomEvent("customResolvedRequest", { detail: response }));
+}
+
+const dispatchRejectedRequestEvent = function(reason) {
+    document.dispatchEvent(new CustomEvent("customRejectedRequest", { detail: reason }));
 }
 
 const mount = function() {
