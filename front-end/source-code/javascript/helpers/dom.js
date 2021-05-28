@@ -35,7 +35,7 @@ export const getSearchResultsElement = () => {
 // Gathers the current input query and dispatches an event containing
 // said information so other objects can potentially transfer the request
 // to the server.
-const dispatchStartRequestEvent = function() {
+export const dispatchStartRequestEvent = function() {
     const input = getSearchInputElement();
 
     document.dispatchEvent(new CustomEvent("customStartRequest", { detail: input.value }));
@@ -43,11 +43,11 @@ const dispatchStartRequestEvent = function() {
 
 // Signals that a request for results has been completed and provides the result
 // so other modules can operate with it.
-const dispatchResolvedRequestEvent = function(response) {
+export const dispatchResolvedRequestEvent = function(response) {
     document.dispatchEvent(new CustomEvent("customResolvedRequest", { detail: response }));
 }
 
-const dispatchRejectedRequestEvent = function(reason) {
+export const dispatchRejectedRequestEvent = function(reason) {
     document.dispatchEvent(new CustomEvent("customRejectedRequest", { detail: reason }));
 }
 
