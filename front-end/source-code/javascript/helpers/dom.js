@@ -24,7 +24,7 @@ export const getSearchButtonElement = () => {
     return document.querySelector(".page > .search > .query > .bar > .button");
 };
 
-export const getSearchResultsElement = () => {
+export const getSearchResultListElement = () => {
     if (document.readyState === "loading") {
         throw new DOMNotLoadedError("");
     }
