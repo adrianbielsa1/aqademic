@@ -273,7 +273,7 @@ $current-palette: $orangey-palette;
 }
 
 .search > .result > .list > .item {
-    @include flex-wrap-center;
+    @include flex-wrap-center(column);
 
     font-weight: normal;
     color: map.get($current-palette, "secondary-text");
