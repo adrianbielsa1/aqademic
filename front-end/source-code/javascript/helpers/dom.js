@@ -39,17 +39,17 @@ export const dispatchStartRequestEvent = function() {
     const input = getSearchInputElement();
 
     document.dispatchEvent(new CustomEvent("customStartRequest", { detail: input.value }));
-}
+};
 
 // Signals that a request for results has been completed and provides the result
 // so other modules can operate with it.
 export const dispatchResolvedRequestEvent = function(response) {
     document.dispatchEvent(new CustomEvent("customResolvedRequest", { detail: response }));
-}
+};
 
 export const dispatchRejectedRequestEvent = function(reason) {
     document.dispatchEvent(new CustomEvent("customRejectedRequest", { detail: reason }));
-}
+};
 
 const mount = function() {
     const input = getSearchInputElement();
