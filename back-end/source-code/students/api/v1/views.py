@@ -7,6 +7,25 @@ from ...models import StudentModel
 from ...serializers import StudentSerializer
 
 """
+Creates a new student.
+"""
+@api_view(["POST"])
+def create(request):
+    # Create a new student from the request's data.
+    # TODO: Does this update existing students?
+    serializer = StudentSerializer(data=request.data)
+
+    if serializer.is_valid():
+        # The student was created correctly - save it to the database,
+        # and notify the other end of the request's completion.
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        # Failed to create the student :-(
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+"""
 Returns a list of students matching the specified names.
 """
 @api_view(["GET"])
