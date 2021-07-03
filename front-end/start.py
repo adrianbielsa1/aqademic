@@ -3,9 +3,7 @@ import asyncio
 # Runs a specific command in a separate subprocess.
 async def run(command):
     process = await asyncio.create_subprocess_shell(
-            command,
-            stdout = asyncio.subprocess.PIPE,
-            stderr = asyncio.subprocess.PIPE
+        command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
 
     output, errors = await process.communicate()
@@ -17,6 +15,7 @@ async def run(command):
 
     if errors:
         print(f"[errors]\n{errors.decode()}")
+
 
 # Auxiliar function to convert a dictionary into a flattened string, adding
 # a = symbol between each key and its value, and a space between each key-value
@@ -41,12 +40,12 @@ def flatten_dictionary_into_string(d, concatenator, separator):
 
     return s
 
+
 # Runs the front-end related commands.
 async def run_front_end_commands():
     live_server_arguments = {
         "--port": "8080",
         "--entry-file": "source-code/html/index.html",
-
         # A few aliases so the URL doesn't show the inner folder structure
         # unless explicitly accessed.
         "--mount": [
@@ -54,13 +53,12 @@ async def run_front_end_commands():
         ],
     }
 
-    sass_arguments = {
-        "--watch": "source-code/sass:source-code/css"
-    }
+    sass_arguments = {"--watch": "source-code/sass:source-code/css"}
 
     commands = [
-        "live-server " + flatten_dictionary_into_string(live_server_arguments, "=", " "),
-        "sass " + flatten_dictionary_into_string(sass_arguments, " ", " ")
+        "live-server "
+        + flatten_dictionary_into_string(live_server_arguments, "=", " "),
+        "sass " + flatten_dictionary_into_string(sass_arguments, " ", " "),
     ]
 
     # Display the list of commands.
@@ -70,5 +68,6 @@ async def run_front_end_commands():
     # Apply the `run` function to each `command`, and then unpack these async
     # calls and wait for them to complete with `gather`.
     await asyncio.gather(*map(run, commands))
+
 
 asyncio.run(run_front_end_commands())
