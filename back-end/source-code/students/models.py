@@ -2,7 +2,7 @@ from django.db import models
 
 
 class StudentModel(models.Model):
-    names = models.CharField(max_length = 120)
+    names = models.CharField(max_length=120)
     file = models.IntegerField()
 
     def __str__(self):
