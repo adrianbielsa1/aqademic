@@ -26,6 +26,28 @@ def create(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 """
+Removes one or more students that match the specified file number.
+"""
+@api_view(["DELETE"])
+def delete_by_file(request):
+    # Get file number.
+    # TODO: Wrap in a `try` statement.
+    file = request.data
+
+    # Find the students whose file matches and remove them.
+    students = StudentModel.objects.all().filter(file = file).delete()
+    students_count = students[0]
+
+    if students_count > 0:
+        # Students deleted successfully.
+        return Response(students_count, status=status.HTTP_200_OK)
+    else:
+        # No students found with the given file number.
+        # TODO: Maybe this response should be returned if the request's data
+        # is ill-formed, instead of returning it when no students were found.
+        return Response(students_count, status=status.HTTP_400_BAD_REQUEST)
+
+"""
 Returns a list of students matching the specified names.
 """
 @api_view(["GET"])
