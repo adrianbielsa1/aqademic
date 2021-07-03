@@ -1,0 +1,39 @@
+name: Python's Black formatter
+
+# Controls when the workflow will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch.
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+jobs:
+  # This workflow contains a single job called "build".
+  build:
+    # The type of runner that the job will run on.
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job.
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it.
+      - uses: actions/checkout@v2
+      
+      # Prepares Python so we can install Black on it.
+      - name: Setup Python
+        uses: actions/setup-python@v2.2.2
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.x # optional, default is 3.x
+          
+      # Installs the Black code formatter.
+      - name: Install Black
+        run: pip install black
+      
+      # Runs Black on the whole repository, discovering ".py" files along the way.
+      - name: Run Black
+        run: black --check .
