@@ -48,6 +48,28 @@ def delete_by_file(request):
         return Response(students_count, status=status.HTTP_400_BAD_REQUEST)
 
 """
+Updates a given student, finding it through its file number.
+TODO: Check if there are more than one entries with the same file number?
+TODO: Consider unifying this function with `create()`, maybe by using Django's
+`update_or_create()` method.
+"""
+@api_view(["PUT"])
+def update_by_file(request, file):
+    # Find the student.
+    student = StudentModel.objects.get(file = file)
+
+    # Update each field.
+    # TODO: Check if fields exist.
+    for key, value in request.data.items():
+        setattr(student, key, value)
+
+    # Save new values in the database.
+    student.save()
+
+    # TODO: Return another response if the student couldn't be found.
+    return Response(None, status=status.HTTP_200_OK)
+
+"""
 Returns a list of students matching the specified names.
 """
 @api_view(["GET"])
